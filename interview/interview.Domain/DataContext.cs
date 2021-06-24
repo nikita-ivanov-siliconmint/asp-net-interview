@@ -6,6 +6,8 @@ namespace interview.Domain
 {
     public class DataContext : DbContext
     {
+        public DbSet<User> Users { get; set; }
+
         public DbSet<Author> Authors { get; set; }
 
         public DbSet<Book> Books { get; set; }
@@ -18,6 +20,21 @@ namespace interview.Domain
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>().HasData(
+                new User
+                {
+                    Login = "testUser",
+                    Password = "testPassword",
+                    Role = UserRole.Default
+                },
+                new User
+                {
+                    Login = "admin",
+                    Password = "admin",
+                    Role = UserRole.Admin
+                }
+            );
+
             modelBuilder.Entity<Author>().HasData(
                 new Author
                 {
