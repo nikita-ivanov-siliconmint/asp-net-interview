@@ -24,9 +24,9 @@ namespace interview.Controllers
 
 
         [HttpGet("auth")]
-        public async Task<IActionResult> AuthAsync([FromBody] AuthUser authUser)
+        public async Task<IActionResult> AuthAsync([FromBody] AuthUserDTO authUserDto)
         {
-            AuthServiceResult authServiceResult = await _authService.AuthAsync(authUser.Login, authUser.Password);
+            AuthServiceResult authServiceResult = await _authService.AuthAsync(authUserDto.Login, authUserDto.Password);
 
             return authServiceResult.Result switch
             {
@@ -37,16 +37,24 @@ namespace interview.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> RegisterAsync([FromBody] AuthUser authUser)
+        public async Task<IActionResult> RegisterAsync([FromBody] AuthUserDTO authUserDto)
         {
             (AuthServiceResult authServiceResult, User user) = await _authService
-                .RegisterAsync(authUser.Login, authUser.Password);
+                .RegisterAsync(authUserDto.Login, authUserDto.Password);
 
-            // TODO return RegisterResultApi when OK
+            var registerResult = new RegisterResultApi
+            {
+                Token = authServiceResult.Token,
+                User = new UserApi
+                {
+                    Id = user.Id,
+                    Login = user.Login,
+                }
+            };
 
             return authServiceResult.Result switch
             {
-                AuthServiceResults.Ok => Ok(),
+                AuthServiceResults.Ok => Ok(registerResult),
                 AuthServiceResults.DuplicateLogin => BadRequest("Please, take another login."),
                 _ => StatusCode((int)HttpStatusCode.NotImplemented),
             };

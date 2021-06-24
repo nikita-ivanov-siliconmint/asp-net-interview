@@ -2,7 +2,7 @@
 
 namespace interview.DTO
 {
-    public class AuthUser
+    public class AuthUserDTO
     {
         [Required]
         [MinLength(5)]
