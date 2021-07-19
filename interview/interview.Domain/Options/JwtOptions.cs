@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace interview.Options
+namespace interview.Domain.Options
 {
     public class JwtOptions
     {

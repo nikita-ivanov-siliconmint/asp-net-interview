@@ -5,15 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 
-using interview.Domain;
 using interview.Domain.Models;
-using interview.Models;
-using interview.Options;
+using interview.Domain.Options;
+using interview.Domain.Services.Interfaces;
 
-namespace interview.Services.Auth
+namespace interview.Domain.Services
 {
     public class AuthService : IAuthService
     {

@@ -2,7 +2,7 @@
 
 using interview.Domain.Models;
 
-namespace interview.Domain.Services.AuthorService
+namespace interview.Domain.Services.Interfaces
 {
     public interface IAuthorService
     {

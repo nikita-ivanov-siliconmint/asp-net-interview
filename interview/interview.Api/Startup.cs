@@ -7,7 +7,7 @@ using Microsoft.Extensions.Hosting;
 
 using interview.Domain;
 using interview.Domain.Extensions;
-using interview.Options;
+using interview.Domain.Options;
 
 namespace interview
 {

@@ -2,10 +2,9 @@
 using System.Threading.Tasks;
 
 using interview.Domain.Models;
+using interview.Domain.Services.Interfaces;
 using interview.DTO;
 using interview.Models;
-using interview.Services.Auth;
-
 using Microsoft.AspNetCore.Mvc;
 
 namespace interview.Controllers

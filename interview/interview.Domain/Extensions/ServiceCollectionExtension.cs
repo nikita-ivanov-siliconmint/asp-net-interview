@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-using interview.Domain.Services.AuthorService;
+using interview.Domain.Services.Interfaces;
+using interview.Domain.Services;
 
 namespace interview.Domain.Extensions
 {

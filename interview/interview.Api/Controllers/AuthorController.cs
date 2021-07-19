@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using interview.DTO;
 using interview.Models;
 using interview.Domain.Models;
-using interview.Domain.Services.AuthorService;
+using interview.Domain.Services.Interfaces;
 
 namespace interview.Controllers
 {

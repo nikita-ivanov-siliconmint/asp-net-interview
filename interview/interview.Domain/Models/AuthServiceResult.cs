@@ -1,4 +1,4 @@
-﻿namespace interview.Models
+﻿namespace interview.Domain.Models
 {
     public class AuthServiceResult
     {

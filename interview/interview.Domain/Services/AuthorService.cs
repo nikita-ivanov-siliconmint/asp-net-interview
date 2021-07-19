@@ -2,8 +2,9 @@
 using System.Threading.Tasks;
 
 using interview.Domain.Models;
+using interview.Domain.Services.Interfaces;
 
-namespace interview.Domain.Services.AuthorService
+namespace interview.Domain.Services
 {
     public class AuthorService : IAuthorService
     {

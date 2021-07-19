@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
 
 using interview.Domain.Models;
-using interview.Models;
 
-namespace interview.Services.Auth
+namespace interview.Domain.Services.Interfaces
 {
     public interface IAuthService
     {
