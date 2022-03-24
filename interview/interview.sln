@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "interview.Api", "interview.Api\interview.Api.csproj", "{378F402F-E75E-4348-86B6-54B6F7FA12E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "interview.Domain", "interview.Domain\interview.Domain.csproj", "{85F742B8-A49A-4274-88BC-6D1A6D0F3A21}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "interview.Application", "interview.Application\interview.Application.csproj", "{85F742B8-A49A-4274-88BC-6D1A6D0F3A21}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
