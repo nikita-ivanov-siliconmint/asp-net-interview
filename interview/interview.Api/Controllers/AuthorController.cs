@@ -26,7 +26,7 @@ namespace interview.Controllers
             {
                 Author[] authors = _authorService.Get();
                 AuthorResponse[] response = authors
-                    .Select(x => new AuthorResponse(x.Id, x.FullName, x.Email, x.Age, x.Rank))
+                    .Select(x => new AuthorResponse(x.Id, x.FullName, x.Email, x.Age))
                     .ToArray();
                 return Ok(response);
             }
@@ -50,7 +50,7 @@ namespace interview.Controllers
                     return NotFound(errorResponse);
                 }
 
-                var response = new AuthorResponse(author.Id, author.FullName, author.Email, author.Age, author.Rank);
+                var response = new AuthorResponse(author.Id, author.FullName, author.Email, author.Age);
                 return Ok(response);
             }
             catch (Exception e)
@@ -80,32 +80,16 @@ namespace interview.Controllers
                     throw new Exception("Author age should be at least 18.");
                 }
 
-                string rank = string.Empty;
-
-                if (fullName == "Bruce Lee")
-                {
-                    rank = "Advanced Author";
-                }
-                else if (fullName == "Uncle Bob")
-                {
-                    rank = "Intermediate Author";
-                }
-                else
-                {
-                    rank = "Unknown";
-                }
-                
                 var author = new Author
                 {
                     FullName = createAuthorRequest.FullName,
                     Email = createAuthorRequest.Email,
-                    Age = age,
-                    Rank = rank
+                    Age = age
                 };
 
                 await _authorService.AddAsync(author);
 
-                var response = new AuthorResponse(author.Id, author.FullName, author.Email, author.Age, author.Rank);
+                var response = new AuthorResponse(author.Id, author.FullName, author.Email, author.Age);
                 return Ok(response);
             }
             catch (Exception e)

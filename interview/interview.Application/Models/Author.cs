@@ -12,8 +12,6 @@ namespace interview.Application.Models
 
         public int Age { get; set; }
         
-        public string Rank { get; set; }
-
         public List<Book> Books { get; set; } = new();
     }
 }

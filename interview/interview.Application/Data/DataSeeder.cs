@@ -13,9 +13,6 @@ namespace interview.Application.Data
         {
             var dummyAuthors = GetRandom<Author>(2).ToList();
 
-            dummyAuthors[0].Rank = "Advanced Author";
-            dummyAuthors[1].Rank = "Unknown";
-            
             var dummyUser = new User
             {
                 Id = 1,
