@@ -1,4 +1,9 @@
 ﻿namespace interview.Contracts.Requests
 {
-    public record LoginUserRequest(string Login, string Password);
+    public class LoginUserRequest
+    {
+        public string Login { get; set; }
+
+        public string Password { get; set; }
+    }
 }

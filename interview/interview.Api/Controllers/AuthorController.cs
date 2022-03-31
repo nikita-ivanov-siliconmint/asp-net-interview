@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using interview.Application.Models;
@@ -26,11 +26,17 @@ namespace interview.Controllers
             {
                 Author[] authors = _authorService.Get();
                 AuthorResponse[] response = authors
-                    .Select(x => new AuthorResponse(x.Id, x.FullName, x.Email, x.Age))
+                    .Select(x => new AuthorResponse
+                    {
+                        Id = x.Id,
+                        FullName = x.FullName,
+                        Age = x.Age,
+                        Email = x.Email
+                    })
                     .ToArray();
                 return Ok(response);
             }
-            catch (Exception e)
+            catch (InvalidDataException e)
             {
                 var response = new ErrorResponse(e.Message);
                 return BadRequest(response);
@@ -43,56 +49,67 @@ namespace interview.Controllers
             try
             {
                 Author author = await _authorService.GetByIdAsync(id);
-                
+
                 if (author is null)
                 {
                     var errorResponse = new ErrorResponse($"Author with id {id} not found");
                     return NotFound(errorResponse);
                 }
 
-                var response = new AuthorResponse(author.Id, author.FullName, author.Email, author.Age);
+                var response = new AuthorResponse
+                {
+                    Id = author.Id,
+                    FullName = author.FullName,
+                    Age = author.Age,
+                    Email = author.Email
+                };
                 return Ok(response);
             }
-            catch (Exception e)
+            catch (InvalidDataException e)
             {
                 return BadRequest(e.Message);
             }
         }
-        
+
         [HttpPost("addAuthor")]
         public async Task<IActionResult> AddAsync([FromBody] CreateAuthorRequest createAuthorRequest)
         {
-            var (fullName, email, age) = createAuthorRequest;
             try
             {
-                if (string.IsNullOrEmpty(fullName))
+                if (string.IsNullOrEmpty(createAuthorRequest.FullName))
                 {
-                    throw new Exception($"{nameof(fullName)} should be not empty");
+                    throw new InvalidDataException($"{nameof(createAuthorRequest.FullName)} should be not empty");
                 }
 
-                if (string.IsNullOrEmpty(email) || (!email.Contains("@") && !email.Contains(".")))
+                if (string.IsNullOrEmpty(createAuthorRequest.Email) || (!createAuthorRequest.Email.Contains("@") && !createAuthorRequest.Email.Contains(".")))
                 {
-                    throw new Exception($"{nameof(email)} field should be an email address.");
+                    throw new InvalidDataException($"{nameof(createAuthorRequest.Email)} field should be an email address.");
                 }
 
-                if (age < 18)
+                if (createAuthorRequest.Age < 18)
                 {
-                    throw new Exception("Author age should be at least 18.");
+                    throw new InvalidDataException("Author age should be at least 18.");
                 }
 
                 var author = new Author
                 {
                     FullName = createAuthorRequest.FullName,
                     Email = createAuthorRequest.Email,
-                    Age = age
+                    Age = createAuthorRequest.Age
                 };
 
                 await _authorService.AddAsync(author);
 
-                var response = new AuthorResponse(author.Id, author.FullName, author.Email, author.Age);
+                var response = new AuthorResponse
+                {
+                    Id = author.Id,
+                    FullName = author.FullName,
+                    Age = author.Age,
+                    Email = author.Email
+                };
                 return Ok(response);
             }
-            catch (Exception e)
+            catch (InvalidDataException e)
             {
                 return BadRequest(e.Message);
             }

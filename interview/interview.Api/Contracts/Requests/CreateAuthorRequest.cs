@@ -1,4 +1,11 @@
 ﻿namespace interview.Contracts.Requests
 {
-    public record CreateAuthorRequest(string FullName, string Email, int Age);
+    public record CreateAuthorRequest
+    {
+        public string FullName { get; set; }
+
+        public string Email { get; set; }
+
+        public int Age { get; set; }
+    }
 }

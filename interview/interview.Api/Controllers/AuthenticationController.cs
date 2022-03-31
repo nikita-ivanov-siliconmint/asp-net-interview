@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.IO;
 using System.Threading.Tasks;
 using interview.Application.Services.Interfaces;
 using interview.Contracts.Requests;
@@ -27,7 +27,7 @@ namespace interview.Controllers
                 var response = new AuthSuccessResponse(token);
                 return Ok(response);
             }
-            catch (Exception e)
+            catch (InvalidDataException e)
             {
                 var response = new ErrorResponse(e.Message);
                 return BadRequest(response);

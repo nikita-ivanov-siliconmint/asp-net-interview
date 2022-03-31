@@ -14,11 +14,8 @@ namespace interview.Application.Extensions
             IConfiguration configuration)
         {
             services.AddScoped<IAuthorService, AuthorService>();
-            // TODO: REMOVE
-            services.AddScoped<IAuthenticationService, AuthenticationService>();
 
-            // TODO: CHANGE SECTION NAME TO WRONG
-            services.Configure<JwtOptions>(configuration.GetSection("JwtOptions").Bind);
+            services.Configure<JwtOptions>(configuration.GetSection("Jwt").Bind);
         }
     }
 }

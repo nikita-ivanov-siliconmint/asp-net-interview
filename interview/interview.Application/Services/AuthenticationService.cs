@@ -31,7 +31,7 @@ namespace interview.Application.Services
 
             if (user is null)
             {
-                throw new AuthException($"User {login} has invalid credentials.");
+                throw new InvalidDataException($"User {login} has invalid credentials.");
             }
 
             string authToken = GenerateTokenForUser(user);
