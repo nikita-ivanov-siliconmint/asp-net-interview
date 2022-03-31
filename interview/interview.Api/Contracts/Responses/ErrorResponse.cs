@@ -1,4 +1,12 @@
 ﻿namespace interview.Contracts.Responses
 {
-    public record ErrorResponse(string Message);
+    public class ErrorResponse
+    {
+        public ErrorResponse(string message)
+        {
+            Message = message;
+        }
+        
+        public string Message { get; set; }
+    }
 }

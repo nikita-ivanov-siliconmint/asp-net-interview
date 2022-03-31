@@ -27,8 +27,6 @@ namespace interview
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<JwtOptions>(_configuration.GetSection(nameof(JwtOptions)));
-
             services.AddDbContext<DataContext>(config =>
             {
                 config.UseInMemoryDatabase("database.db");

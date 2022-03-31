@@ -14,7 +14,6 @@ namespace interview.Application.Extensions
             IConfiguration configuration)
         {
             services.AddScoped<IAuthorService, AuthorService>();
-
             services.Configure<JwtOptions>(configuration.GetSection("Jwt").Bind);
         }
     }

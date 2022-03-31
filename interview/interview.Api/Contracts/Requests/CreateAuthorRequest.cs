@@ -1,6 +1,6 @@
 ﻿namespace interview.Contracts.Requests
 {
-    public record CreateAuthorRequest
+    public class CreateAuthorRequest
     {
         public string FullName { get; set; }
 
